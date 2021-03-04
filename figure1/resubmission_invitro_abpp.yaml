@@ -1,0 +1,53 @@
+type: silac
+parser: flatfile
+combine: protein
+dta_folder_name: dta
+name: abhd17_nras_invitro
+datasets_base_path: input
+output_folder: output
+datasets_base_url: https://bfclabcomp4.scripps.edu/~radus/abhd17_nras
+fasta_db_path: cravattlab_Human_nonredundant_07-28-2016_reversed.fasta
+
+datasets:
+  - name: Compound 1 (1 µM)
+    replicates:
+      - cpd_1_1um_invitro
+  - name: Compound 2 (1 µM)
+    replicates:
+      - cpd_2_1um_invitro
+  - name: Compound 3 (1 µM)
+    replicates:
+      - cpd_3_1um_invitro
+  - name: Compound 4 (1 µM)
+    replicates:
+      - cpd_4_1um_invitro
+  - name: Compound 5 (1 µM)
+    replicates:
+      - cpd_5_1um_invitro
+  - name: Compound 1 (10 µM)
+    replicates:
+      - cpd_1_10um_invitro
+  - name: Compound 2 (10 µM)
+    replicates:
+      - cpd_2_10um_invitro
+  - name: Compound 3 (10 µM)
+    replicates:
+      - cpd_3_10um_invitro
+  - name: Compound 4 (10 µM)
+    replicates:
+      - cpd_4_10um_invitro
+  - name: Compound 5 (10 µM)
+    replicates:
+      - cpd_5_10um_invitro
+
+filters:
+  individual:
+    - is_not_reverse
+    - is_quantified
+    - is_unique_sequence
+    - is_not_singleton
+    - is_not_half_tryptic
+    - passes_rsquared_cutoff: 0.5
+  experiment:
+    - filter_20s
+    - min_num_peptides: 2

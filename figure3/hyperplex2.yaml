@@ -1,0 +1,29 @@
+type: tmt
+name: abhd17_nras
+datasets_base_path: input
+output_folder: output
+fasta_db_path: cravattlab_Human_nonredundant_07-28-2016_reversed.fasta
+datasets:
+  - name: hyperplex
+    replicates:
+      - census-out_20201109_OCI_hyper_1.txt
+      - census-out_20201111_OCI_hyper_2.txt
+      - census-out_20201203_OCI_hyper_3.txt
+    channel_layout:
+      - 1: light
+      - 2: dmso_3h
+      - 3: dmso_6h
+      - 4: dmso_24h
+      - 5: dmso_72h
+      - 6: 957_3h
+      - 7: 957_6h
+      - 8: 957_24h
+      - 9: 957_72h
+      - 10: heavy
+    control_channels: light # note this is only to not error out
+filters:
+  individual:
+    - is_not_reverse
+    - is_unique_sequence
+    - is_not_half_tryptic
+    - is_not_terminal

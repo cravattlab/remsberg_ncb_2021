@@ -1,0 +1,25 @@
+type: tmt
+name: abhd17_nras_hydroxylamine
+datasets_base_path: "/mnt/d/OneDrive - The Scripps Research Institute/ABHD17/NCB_Reviews/MS/new_20201202"
+output_folder: output
+fasta_db_path: cravattlab_Human_nonredundant_07-28-2016_reversed.fasta
+datasets:
+  - name: NB4_NH2OH
+    replicates:
+      - census-out_20200918_NB4_NH2OH_1.txt
+    channel_layout:
+      - 1: PBS
+      - 2: PBS
+      - 3: PBS
+      - 4: Hydroxylamine
+      - 5: Hydroxylamine
+      - 6: Hydroxylamine
+    control_channels: PBS
+filters:
+  individual:
+    - is_not_reverse
+    - is_unique_sequence
+    - control_sum:
+        min_intensity_per_control_channel: 5000
+    - control_cv:
+        max_control_cv: 0.5

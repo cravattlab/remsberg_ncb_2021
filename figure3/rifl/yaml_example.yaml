@@ -1,0 +1,28 @@
+base_path: '~abbasov/data/isotop_STP/Chemotypes_invitro_231_Ramos/Acyl Benzotriazoles (ABT)/'
+version: 2.1
+datasets:
+  - name: ABT4
+    replicates: 
+      - MIKA-ABT4_50uM_231_181122
+      - MIKA-ABT4_50uM_Ramos_171202
+      - MIKA-ABT4_50uM_Ramos_171203
+    combined_dta_filename: combined_dta_HL.txt
+    dta_folder: dta_HL
+    dta_select_regex: 'DTASelect-filter_.+\.txt'
+filters:
+  individual:
+    - is_not_reverse
+    - is_quantified
+    - is_not_half_tryptic
+    - is_not_singleton
+    - is_unique_sequence
+  experiment:
+    - filter_20s
+    - filter_by_stdev
+  aggregate:
+    - filter_20s
+    - filter_by_stdev
+    - filter_by_num_quantified:
+        min_datasets: 2
+
+

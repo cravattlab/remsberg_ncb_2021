@@ -1,0 +1,51 @@
+type: silac
+parser: flatfile
+combine: protein
+dta_folder_name: dta
+name: abhd17_nras_insitu
+datasets_base_path: input
+output_folder: output
+datasets_base_url: https://bfclabcomp4.scripps.edu/~radus/abhd17_nras
+fasta_db_path: cravattlab_Human_nonredundant_07-28-2016_reversed.fasta
+
+datasets:
+  - name: ABD957 (500 nM)
+    replicates:
+      - ABD957_rep1
+      - ABD957_rep2
+      - ABD957_rep3
+  - name: ABD298 (500 nM)
+    replicates:
+      - ABHD13i_rep1
+      - ABHD13i_rep2
+      - ABHD13i_rep3
+  - name: HDFP (20 µM)
+    replicates:
+      - HDFP_rep1
+      - HDFP_rep2
+      - HDFP_rep3
+  - name: JJH254 (1 µM)
+    replicates:
+      - JJH254_rep1
+      - JJH254_rep2
+      - JJH254_rep3
+  - name: Palm M (10 µM)
+    replicates:
+      - Palm_M_rep1
+      - Palm_M_rep2
+      - Palm_M_rep3
+
+filters:
+  individual:
+    - is_not_reverse
+    - is_quantified
+    - is_unique_sequence
+    - is_not_singleton
+    - is_not_half_tryptic
+    - passes_rsquared_cutoff: 0.5
+  experiment:
+    - filter_20s
+  aggregate:
+    - filter_20s
+    - min_num_datasets: 2
+    - min_num_unique_sequences: 2

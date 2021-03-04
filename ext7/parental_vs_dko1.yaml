@@ -1,0 +1,37 @@
+type: tmt
+name: abhd17_nras_17odya
+datasets_base_path: "."
+output_folder: output
+fasta_db_path: 20200701_Uniprot_Human_reviewed_NRAS_Q61L.fasta
+datasets:
+  - name: Parental_vs_DKO1
+    replicates:
+      - census-out_20210126_OCI_vs_DKO1_17ODYA_1.txt
+    channel_layout:
+      - 1: Parental DMSO t0
+      - 2: Parental DMSO t0
+      - 3: DKO1 DMSO t0
+      - 4: DKO1 DMSO t0
+      - 5: Parental ABD957 t0
+      - 6: Parental ABD957 t0
+      - 7: DKO ABD957 t0
+      - 8: DKO ABD957 t0
+      - 9: Parental DMSO t1
+      - 10: Parental DMSO t1
+      - 11: DKO1 DMSO t1
+      - 12: DKO1 DMSO t1
+      - 13: Parental ABD957 t1
+      - 14: Parental ABD957 t1
+      - 15: DKO ABD957 t1
+      - 16: DKO ABD957 t1
+    control_channels: Parental DMSO t0
+filters:
+  individual:
+    - is_not_reverse
+    - is_unique_sequence
+    - control_cv:
+        max_control_cv: 0.5
+    - control_sum:
+        min_intensity_per_control_channel: 5000
+    - channel_is_nonzero:
+        channel_numbers: [1, 2, 3, 4, 5, 6, 7, 8]

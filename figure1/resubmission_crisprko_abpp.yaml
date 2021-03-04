@@ -1,0 +1,34 @@
+type: silac
+parser: flatfile
+combine: protein
+dta_folder_name: dta
+name: abhd17_nras_crisprko
+datasets_base_path: input
+output_folder: output
+datasets_base_url: https://bfclabcomp4.scripps.edu/~radus/abhd17_nras/oci_crispr
+fasta_db_path: cravattlab_Human_nonredundant_07-28-2016_reversed.fasta
+
+datasets:
+  - name: "LYPLA-DKO 1"
+    replicates:
+      - NN-NB1-410A
+  - name: "LYPLA-DKO 2"
+    replicates:
+      - NN-NB1-410B
+  - name: "ABHD17-DKO 1"
+    replicates:
+      - NN-NB1-410D
+  - name: "ABHD17-DKO 2"
+    replicates:
+      - NN-NB1-410E
+
+filters:
+  individual:
+    - is_not_reverse
+    - is_quantified
+    - is_unique_sequence
+    # - is_not_singleton
+    - is_not_half_tryptic
+    - passes_rsquared_cutoff: 0.5
+  experiment:
+    - filter_20s

@@ -1,0 +1,31 @@
+type: tmt
+name: abhd17_nras_17odya
+datasets_base_path: "."
+output_folder: output
+fasta_db_path: 20200701_Uniprot_Human_reviewed_NRAS_Q61L.fasta
+datasets:
+  - name: ABHD17-DKO1
+    replicates:
+      - census-out_20210126_ABHD17DKO1_17ODYA_1.txt
+    channel_layout:
+      - 1: DMSO t0
+      - 2: DMSO t0
+      - 3: DMSO t1
+      - 4: DMSO t1
+      - 5: DMSO t1
+      - 6: ABD957 t0
+      - 7: ABD957 t0
+      - 8: ABD957 t1
+      - 9: ABD957 t1
+      - 10: ABD957 t1
+    control_channels: DMSO t0
+filters:
+  individual:
+    - is_not_reverse
+    - is_unique_sequence
+    - control_cv:
+        max_control_cv: 0.5
+    - control_sum:
+        min_intensity_per_control_channel: 5000
+    - channel_is_nonzero:
+        channel_numbers: [1, 2, 6, 7]

@@ -1,0 +1,26 @@
+type: tmt
+name: abhd17_nras_17odya
+datasets_base_path: "/mnt/d/OneDrive - The Scripps Research Institute/ABHD17/NCB_Reviews/MS/new_20201202"
+output_folder: output
+fasta_db_path: cravattlab_Human_nonredundant_07-28-2016_reversed.fasta
+datasets:
+  - name: NB4_6plex_17ODYA
+    replicates:
+      - census-out_20200626_NB4_17ODYA_1.txt
+      - census-out_20200626_NB4_17ODYA_2.txt
+    channel_layout:
+      - 1: DMSO t0
+      - 2: Palm M t0
+      - 3: ABD957 t0
+      - 4: DMSO t1
+      - 5: Palm M t1
+      - 6: ABD957 t1
+    control_channels: DMSO t0
+filters:
+  individual:
+    - is_not_reverse
+    - is_unique_sequence
+    - control_sum:
+        min_intensity_per_control_channel: 5000
+    - channel_is_nonzero:
+        channel_numbers: [1, 2, 3]
